@@ -1,0 +1,5 @@
+diffusers[torch]>=0.9.0
+huggingface-hub>=0.9.1
+gradio
+opencv-python
+pillow

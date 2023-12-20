@@ -1,0 +1,36 @@
+{
+    "input_model": {
+        "type": "PyTorchModel",
+        "config": {
+            "model_loader": "text_encoder_load",
+            "model_script": "user_script.py"
+        }
+    },
+    "systems": {
+        "local_system": {
+            "type": "LocalSystem",
+            "config": {
+                "accelerators": ["cpu"]
+            }
+        }
+    },
+    "passes": {
+        "conversion": {
+            "tpye": "OpenVINOConversion",
+            "config": {
+                "user_script": "user_script.py",
+                "example_input": "get_text_encoder_example_input",
+                "input": "get_text_encoder_input_shape"
+            }
+        }
+    },
+    "engine": {
+        "search_strategy": false,
+        "evaluate_input_model": false,
+        "host": "local_system",
+        "target": "local_system",
+        "cache_dir": "cache",
+        "output_name": "text_encoder",
+        "output_dir": "sd_openvino"
+    }
+}
